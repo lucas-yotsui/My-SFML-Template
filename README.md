@@ -1,8 +1,8 @@
-# Projeto em C++ com wxWidgets para Interface Gráfica
+# Projeto em C++ com SFML para Interface Gráfica
 
 ## Introdução
 
-Este repositório é um template para criação de projetos em C++ com interface gráfica para usuário utilizando a biblioteca wxWidgets. Por ser configurado como um template no Github, é possível cloná-lo sem copiar as informações de controle de versão deste. Dessa forma, seu projeto criado a partir de um clone deste template é tratado como novo e suas informações de controle de versão serão exclusivamente referentes a ele.
+Este repositório é um template para criação de projetos em C++ com interface gráfica para usuário utilizando a biblioteca SFML. Por ser configurado como um template no Github, é possível cloná-lo sem copiar as informações de controle de versão deste. Dessa forma, seu projeto criado a partir de um clone deste template é tratado como novo e suas informações de controle de versão serão exclusivamente referentes a ele.
 
 ## Criando seu Projeto
 
@@ -28,9 +28,9 @@ _**Observação:** Pode ser usada a linha de comando convencional do Git, porém
 
 ## Compilando e Executando
 
-O projeto foi desenvolvido com o intuito de poder ser compilado em um ambiente Linux ou Windows, entretanto foi testado somente no Windows com MinGW, com Clang e GCC.
+O projeto foi desenvolvido com o intuito de poder ser compilado em um ambiente Linux ou Windows, entretanto foi testado somente no Windows com MinGW, compilando com Clang e GCC.
 
-Conforme dito na introdução, o projeto foi desenvolvido utilizando CMake de tal forma que quando executado o comando para build, será instalado o wxWidgets automaticamente para compilação. Para isso, é clonado o repositório dessa biblioteca via Git e compilado, de forma a evitar a necessidade de possuir essa biblioteca instalada localmente. 
+Conforme dito na introdução, o projeto foi desenvolvido utilizando CMake de tal forma que quando executado o comando para build, será instalado o SFML automaticamente para compilação. Para isso, é clonado o repositório dessa biblioteca via Git e compilado, de forma a evitar a necessidade de possuir essa biblioteca instalada localmente. 
 
 Essa decisão de projeto proporciona essa facilidade de automatizar o processo de obtenção da biblioteca e de sua ligação com o projeto, porém ao custo de tempos de compilação maiores.
 
@@ -44,7 +44,7 @@ Utilizando o VS Code configurado desta forma, a compilação e execução do pro
 
 ![Selecione o kit desejado](https://imgur.com/f7UuZnn.png)
 
-3. Aguardar a configuração inicial do CMake. Quando encerrada essa etapa, os recursos do wxWidgets já estão disponíveis para inclusão no código.
+3. Aguardar a configuração inicial do CMake. Quando encerrada essa etapa, os recursos do SFML já estão disponíveis para inclusão no código.
 
 4. Basta agora compilar seu projeto com o comando **Build**. Para isso, clique neste botão da barra de utilidades da extensão CMake Tools.
 
@@ -60,11 +60,11 @@ Incluso neste projeto está um arquivo _main.cpp_ contendo um programa de exempl
 
 ## Observações
 
-1. A primeira configuração e compilação do projeto são sempre as mais demoradas, uma vez que nestes casos é necessário baixar e compilar wxWidgets novamente. Portanto, na medida do possível, evite apagar o diretório _build_, pois dessa forma, esta dependência ainda estará presente e pronta.
+1. A primeira configuração e compilação do projeto são sempre as mais demoradas, uma vez que nestes casos é necessário baixar e compilar SFML novamente. Portanto, na medida do possível, evite apagar o diretório _build_, pois dessa forma, esta dependência ainda estará presente e pronta.
 
-2. O projeto cria um link estático entre a biblioteca wxWidgets e seu projeto, dessa forma os executáveis criados são independentes e podem ser separados do computador em que foram compilados livremente.
+2. O projeto cria um link estático entre a biblioteca SFML e seu projeto, dessa forma os executáveis criados são independentes e podem ser separados do computador em que foram compilados livremente.
 
-3. A biblioteca wxWidgets possui uma licença completamente livre de direitos autorais. Logo, pode ser utilizada em projetos pessoais e comerciais sem nenhum tipo de tarifa.
+3. A biblioteca SFML possui uma licença completamente livre de direitos autorais. Logo, pode ser utilizada em projetos pessoais e comerciais sem nenhum tipo de tarifa.
 
 ## Considerações Finais
 
