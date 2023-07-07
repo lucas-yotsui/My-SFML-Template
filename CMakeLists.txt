@@ -1,18 +1,43 @@
-cmake_minimum_required(VERSION 3.21)
-project(CMakeSFMLProject LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
+project(my_project LANGUAGES CXX)
 
+# Using C++20
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Use SFML static libraries
+set(BUILD_SHARED_LIBS FALSE)
+
+# Include FetchContent module
 include(FetchContent)
-FetchContent_Declare(SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.x)
+
+# Fetch SFML dependency statement declaration
+FetchContent_Declare(
+    SFML
+    GIT_REPOSITORY 
+        https://github.com/SFML/SFML.git
+    GIT_TAG 
+        2.6.x
+)
+
+# Message to inform user that script is not bugged, just busy resolving dependecy
+message(STATUS "Baixando SFML e incluindo-o no projeto")
+
+# Efectively fetch SFML dependency
 FetchContent_MakeAvailable(SFML)
 
-add_executable(CMakeSFMLProject src/main.cpp)
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
-target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
-if (WIN32 AND BUILD_SHARED_LIBS)
-    add_custom_command(TARGET CMakeSFMLProject POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:CMakeSFMLProject> $<TARGET_FILE_DIR:CMakeSFMLProject> COMMAND_EXPAND_LISTS)
-endif()
+# Include all of the program's header and source files
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/*.h)
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_LIST_DIR}/source/*.cpp)
 
-install(TARGETS CMakeSFMLProject)
+# Create program executable and link against all of the program's headers and source files
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+# Link SFML libraries against program executable
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
+
+# Copy all assets to build directory to make them available to the program
+add_custom_target(copy_assets
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
+)
+add_dependencies(${PROJECT_NAME} copy_assets)

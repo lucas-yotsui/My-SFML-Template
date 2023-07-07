@@ -1,89 +1,77 @@
-# CMake SFML Project Template
+# Projeto em C++ com wxWidgets para Interface Gráfica
 
-This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
-Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
+## Introdução
 
-The template starts out very basic, but might receive additional features over time:
+Este repositório é um template para criação de projetos em C++ com interface gráfica para usuário utilizando a biblioteca wxWidgets. Por ser configurado como um template no Github, é possível cloná-lo sem copiar as informações de controle de versão deste. Dessa forma, seu projeto criado a partir de um clone deste template é tratado como novo e suas informações de controle de versão serão exclusivamente referentes a ele.
 
-- Basic CMake script to build your project and link SFML on any operating system
-- Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
+## Criando seu Projeto
 
-## How to Use
+A melhor forma de criar seu novo projeto baseado neste template é através da interface do site Github ou da aplicação de linha de comando própria do Github, uma vez que o recurso de template é exclusivo deste. Para isso, siga as seguintes instruções: 
 
-1. Follow the above instructions about how to use GitHub's project template feature to create your own project.
-1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want. The project and executable names don't have to match.
-1. If you want to add or remove any .cpp files, change the source files listed in the [`add_executable`](CMakeLists.txt#L10) call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
-1. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
-    - [VS Code](https://code.visualstudio.com) via the [CMake extension](https://code.visualstudio.com/docs/cpp/cmake-linux)
-    - [Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170)
-    - [CLion](https://www.jetbrains.com/clion/features/cmake-support.html)
-    - [Qt Creator](https://doc.qt.io/qtcreator/creator-project-cmake.html)
+1. Entre na página do Github desse template.  
 
-    Using CMake from the command line is straightforward as well.
+2. Clique no botão verde que diz **Use this template**.
 
-    For a single-configuration generator (typically the case on Linux and macOS):
-    ```
-    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-    cmake --build build
-    ```
+![Usar este template](https://imgur.com/T2eswUz.png)
 
-    For a multi-configuration generator (typically the case on Windows):
-    ```
-    cmake -S . -B build
-    cmake --build build --config Release
-    ```
-1. Enjoy!
+3. Clique na opção **Create a new repository**.
 
-## Upgrading SFML
+4. Escolha um nome e opcionalmente uma descrição para seu novo projeto.
 
-SFML is found via CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module.
-FetchContent automatically downloads SFML from GitHub and builds it alongside your own code.
-Beyond the convenience of not having to install SFML yourself, this ensures ABI compatability and simplifies things like specifying static versus shared libraries.
+![Criando seu repositório](https://imgur.com/dbtpLTF.png)
 
-Modifying what version of SFML you want is as easy as changing the [`GIT_TAG`](CMakeLists.txt#L7) argument.
-Currently it uses the latest in-development version of SFML 2 via the `2.6.x` tag.
-If you're feeling adventurous and want to give SFML 3 a try, use the `master` tag.
-Beware, this requires changing your code to suit the modified API!
-The nice folks in the [SFML community](https://github.com/SFML/SFML#community) can help you with that transition and the bugs you may encounter along the way.
+5. Escolha a visibilidade que deseja para o repositório do seu projeto.
 
-## But I want to...
+6. Clique em **Create repository from template**.
 
-Modify CMake options by adding them as configuration parameters (with a `-D` flag) or by modifying the contents of CMakeCache.txt and rebuilding.
+_**Observação:** Pode ser usada a linha de comando convencional do Git, porém o repositório será clonado da forma padrão, incluindo todas as informações de versionamento e autoria do projeto. Nesse caso é necessário abrir a pasta onde foi clonado e deletar o diretório _.git_._
 
-### Use Static Libraries
+## Compilando e Executando
 
-By default SFML builds shared libraries and this default is inherited by your project.
-CMake's [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) option lets you pick static or shared libraries for the entire project.
+O projeto foi desenvolvido com o intuito de poder ser compilado em um ambiente Linux ou Windows, entretanto foi testado somente no Windows com MinGW, com Clang e GCC.
 
-### Change Compilers
+Conforme dito na introdução, o projeto foi desenvolvido utilizando CMake de tal forma que quando executado o comando para build, será instalado o wxWidgets automaticamente para compilação. Para isso, é clonado o repositório dessa biblioteca via Git e compilado, de forma a evitar a necessidade de possuir essa biblioteca instalada localmente. 
 
-See the variety of [`CMAKE_<LANG>_COMPILER`](https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER.html) options.
-In particular you'll want to modify `CMAKE_CXX_COMPILER` to point to the C++ compiler you wish to use.
+Essa decisão de projeto proporciona essa facilidade de automatizar o processo de obtenção da biblioteca e de sua ligação com o projeto, porém ao custo de tempos de compilação maiores.
 
-### Change Compiler Optimizations
+O projeto foi desenvolvido tendo em mente o uso do editor **Visual Studio Code**, uma vez que sua extensão **Cmake Tools** facilita o uso de CMake para compilação, removendo a necessidade de uso de repetidos comandos via terminal. Além desta extensão, é recomendada também a extensão **C/C++ Extension Pack**, para usar colorização de destaque de sintaxe e outros recursos que facilitam o desenvolvimento em C/C++ _(Inclusive essa extensão já inclui a CMake Tools)_.
 
-CMake abstracts away specific optimizer flags through the [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) option.
-By default this project recommends `Release` builds which enable optimizations.
-Other build types include `Debug` builds which enable debug symbols but disable optimizations.
-If you're using a multi-configuration generator (as is often the case on Windows), you can modify the [`CMAKE_CONFIGURATION_TYPES`](https://cmake.org/cmake/help/latest/variable/CMAKE_CONFIGURATION_TYPES.html#variable:CMAKE_CONFIGURATION_TYPES) option.
+Utilizando o VS Code configurado desta forma, a compilação e execução do projeto é muito simples. Basta seguir o seguinte procedimento:
 
-### Change Generators
+1. Abrir a pasta do projeto no editor.
 
-While CMake will attempt to pick a suitable default generator, some systems offer a number of generators to choose from.
-Ubuntu, for example, offers Makefiles and Ninja as two potential options.
-For a list of generators, click [here](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html).
-To modify the generator you're using you must reconfigure your project providing a `-G` flag with a value corresponding to the generator you want.
-You can't simply modify an entry in the CMakeCache.txt file unlike the above options.
-Then you may rebuild your project with this new generator.
+2. Selecionar o kit de desenvolvimento usado pelo CMake.
 
-## More Reading
+![Selecione o kit desejado](https://imgur.com/f7UuZnn.png)
 
-Here are some useful resources if you want to learn more about CMake:
+3. Aguardar a configuração inicial do CMake. Quando encerrada essa etapa, os recursos do wxWidgets já estão disponíveis para inclusão no código.
 
-- [How to Use CMake Without the Agonizing Pain - Part 1](https://alexreinking.com/blog/how-to-use-cmake-without-the-agonizing-pain-part-1.html)
-- [How to Use CMake Without the Agonizing Pain - Part 2](https://alexreinking.com/blog/how-to-use-cmake-without-the-agonizing-pain-part-2.html)
-- [Better CMake YouTube series by Jefferon Amstutz](https://www.youtube.com/playlist?list=PL8i3OhJb4FNV10aIZ8oF0AA46HgA2ed8g)
+4. Basta agora compilar seu projeto com o comando **Build**. Para isso, clique neste botão da barra de utilidades da extensão CMake Tools.
 
-## License
+![Compilar](https://imgur.com/8pqi8D7.png)
 
-The source code is dual licensed under Public Domain and MIT -- choose whichever you prefer.
+5. Encerrada a compilação, basta executar seu programa. Para isso, clique neste botão da barra de utilidades da extensão CMake Tools.
+
+![Executar](https://imgur.com/c3KchnQ.png)
+
+Incluso neste projeto está um arquivo _main.cpp_ contendo um programa de exemplo da biblioteca, o qual deve criar a seguinte janela no evento de compilação e execução bem-sucedidas:
+
+![Programa de exemplo](https://imgur.com/JkwFMVF.png)
+
+## Observações
+
+1. A primeira configuração e compilação do projeto são sempre as mais demoradas, uma vez que nestes casos é necessário baixar e compilar wxWidgets novamente. Portanto, na medida do possível, evite apagar o diretório _build_, pois dessa forma, esta dependência ainda estará presente e pronta.
+
+2. O projeto cria um link estático entre a biblioteca wxWidgets e seu projeto, dessa forma os executáveis criados são independentes e podem ser separados do computador em que foram compilados livremente.
+
+3. A biblioteca wxWidgets possui uma licença completamente livre de direitos autorais. Logo, pode ser utilizada em projetos pessoais e comerciais sem nenhum tipo de tarifa.
+
+## Considerações Finais
+
+Caso possua alguma sugestão, dúvida ou encontre algum problema durante o uso deste template, por favor sinta-se a vontade para criar uma _**Issue**_ ou um _**Pull request**_.
+
+Espero que este projeto lhe seja útil, especialmente para aqueles que ainda estão começando a aprender programação no geral ou especificamente em C++. A linguagem por si só pode ser intimidadora e complexa, sendo até mesmo seu processo de compilação muito complexo, há a compilação manual por comandos de terminal; CMake ou Makefiles para a criação de scripts automatizados, cada um com sua sintaxe e recursos específicos; link estático ou dinâmico de bibliotecas; múltiplos compiladores diferentes; etc.
+
+Nesse cenário, a possibilidade de oferecer uma facilidade em parte desse processo é com certeza algo de muito auxílio no aprendizado desta poderosa, porém complexa ferramenta. 
+
+Espero também que a documentação seja eficiente para entender não somente como utilizar o projeto, mas também seu funcionamento e lógica subjacente, para que possibilite aprender um pouco mais sobre a ferramenta CMake e o processo de compilação de um programa em C/C++.
