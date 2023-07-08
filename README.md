@@ -70,7 +70,7 @@ Utilizando o VS Code configurado desta forma, a compilação e execução do pro
 
 Incluso neste projeto está um arquivo _main.cpp_ contendo um programa de exemplo da biblioteca, o qual deve criar a seguinte janela no evento de compilação e execução bem-sucedidas:
 
-![Programa de exemplo](https://imgur.com/JkwFMVF.png)
+![Programa de exemplo](https://imgur.com/HTPOTQi.png)
 
 ## Observações
 
