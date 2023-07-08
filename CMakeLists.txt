@@ -14,6 +14,7 @@ include(FetchContent)
 # Fetch SFML dependency statement declaration
 FetchContent_Declare(
     SFML
+    SYSTEM
     GIT_REPOSITORY 
         https://github.com/SFML/SFML.git
     GIT_TAG 
@@ -30,11 +31,19 @@ FetchContent_MakeAvailable(SFML)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/*.h)
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_LIST_DIR}/source/*.cpp)
 
+# Configure the project to look for include files in the 'include' directory
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+
 # Create program executable and link against all of the program's headers and source files
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Link SFML libraries against program executable
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-system)
+
+# Set compiler warnings and make them be treated as errors
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    COMPILE_OPTIONS "-Wall;-Wextra;-pedantic;-Werror"
+)
 
 # Copy all assets to build directory to make them available to the program
 add_custom_target(copy_assets
