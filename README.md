@@ -4,6 +4,20 @@
 
 Este repositório é um template para criação de projetos em C++ com interface gráfica para usuário utilizando a biblioteca SFML. Por ser configurado como um template no Github, é possível cloná-lo sem copiar as informações de controle de versão deste. Dessa forma, seu projeto criado a partir de um clone deste template é tratado como novo e suas informações de controle de versão serão exclusivamente referentes a ele.
 
+## Pré-Requisitos
+
+Para utilizar este projeto, é necessário que você tenha:
+
+1. Um kit de desenvolvimento C/C++ (compilador, debugger, etc).
+
+**OBS: No Windows, é necessário usar um kit de desenvolvimento que utilize o MSVCRT, uma vez que conforme apontado [neste fórum](https://en.sfml-dev.org/forums/index.php?topic=28265.0) as dependências do SFML foram compiladas dessa forma, logo não é possível utilizar um kit baseado em UCRT. Caso você não faça ideia do que significa nada disso e esteja no Windows, apenas use o MinGW MSVCRT disponível [nesse site](https://winlibs.com/). A versão que você deve baixar está neste trecho do site:**
+
+![Download MinGW MSVCRT](https://imgur.com/J5bfSRD.png)
+
+2. Cmake instalado e adicionado ao PATH.
+
+Estes são os recursos obrigatórios para o uso deste projeto. Entretanto, também é recomendado o uso do editor **Visual Studio Code** com o pacote de extensões **C/C++ Extension Pack** para facilitar seu uso.
+
 ## Criando seu Projeto
 
 A melhor forma de criar seu novo projeto baseado neste template é através da interface do site Github ou da aplicação de linha de comando própria do Github, uma vez que o recurso de template é exclusivo deste. Para isso, siga as seguintes instruções: 
